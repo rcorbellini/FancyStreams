@@ -29,7 +29,7 @@ extension FancyStreamsPower on Disposable {
     } on InjectorException {
       _injector.map<Stream<T>>((i) => _behaviorSubjectOf<T>(key: key).stream,
           isSingleton: true, key: key);
-      return streamOf<T>();
+      return streamOf<T>(key: key);
     }
   }
 
@@ -43,7 +43,7 @@ extension FancyStreamsPower on Disposable {
       _injector.map<BehaviorSubject<T>>((i) => BehaviorSubject<T>(),
           isSingleton: true, key: key);
 
-      return _behaviorSubjectOf<T>();
+      return _behaviorSubjectOf<T>(key: key);
     }
   }
 
