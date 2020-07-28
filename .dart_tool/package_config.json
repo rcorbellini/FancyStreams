@@ -1,0 +1,32 @@
+{
+  "configVersion": 2,
+  "packages": [
+    {
+      "name": "flutter_simple_dependency_injection",
+      "rootUri": "file:///home/rafael/.pub-cache/hosted/pub.dartlang.org/flutter_simple_dependency_injection-1.0.2+1",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "meta",
+      "rootUri": "file:///home/rafael/.pub-cache/hosted/pub.dartlang.org/meta-1.2.2",
+      "packageUri": "lib/",
+      "languageVersion": "1.12"
+    },
+    {
+      "name": "rxdart",
+      "rootUri": "file:///home/rafael/.pub-cache/hosted/pub.dartlang.org/rxdart-0.24.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.6"
+    },
+    {
+      "name": "fancy_stream",
+      "rootUri": "../",
+      "packageUri": "lib/",
+      "languageVersion": "2.6"
+    }
+  ],
+  "generated": "2020-07-28T20:13:24.451462Z",
+  "generator": "pub",
+  "generatorVersion": "2.8.0-dev.0.0"
+}
