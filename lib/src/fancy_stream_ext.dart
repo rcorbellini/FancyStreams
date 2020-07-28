@@ -4,9 +4,22 @@ import 'package:flutter_simple_dependency_injection/injector.dart';
 import 'package:rxdart/rxdart.dart';
 import 'disposable.dart';
 
+///Give all power of Fancy Streans to Disposable class.
+///All power are based on Type of generic function, that type can
+/// be combined with a key name, that power are:
+/// - [listenOn] to listen a stream, without boiler plate of subjec and cancel
+/// subscription.
+/// - [dispatchOn] to add some value to sink, without any outer code.
+/// - [dispatchAllOn] like dispatch, but for multiple values.
+/// - [streamOf]  get directly instance of stream, without  any boiler
+/// plate of subjec.
+/// - [cleanAll] will close/cancel everything created.
 extension FancyStreamsPower on Disposable {
-  StreamSubscription<T> listenOn<T>(void onData(T event),
-      {Function onError, void onDone(), bool cancelOnError, String key}) {
+  StreamSubscription<T> listenOn<T>(void Function(T) onData,
+      {Function onError,
+      void Function() onDone,
+      bool cancelOnError,
+      String key}) {
     final subscription =
         streamOf<T>(key: key).listen(onData, onError: onError, onDone: onDone);
     //adding on subcription, to clean on future.

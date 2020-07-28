@@ -1,5 +1,5 @@
 name: fancy_stream
-description: A Fancy way to use streams.
+description: A sophisticated way to use streams, make it even easier to use, highly recommended for use in Bloc Pattern, as it contains functions for easy use of stream / sink dispatch / listen to work with streams without boilerplate.
 homepage: https://github.com/rcorbellini/FancyStreams
 
 # The following defines the version and build number for your application.
@@ -12,7 +12,7 @@ homepage: https://github.com/rcorbellini/FancyStreams
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.0+1
+version: 1.0.1+2
 
 environment:
   sdk: ">=2.6.0 <3.0.0"
