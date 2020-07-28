@@ -1,6 +1,6 @@
 import 'package:test/test.dart';
 
-import 'package:fancy_stream/fancy_streams.dart';
+import 'package:fancy_stream/fancy_stream.dart';
 
 void main() {
   DummyClass dummyClass;

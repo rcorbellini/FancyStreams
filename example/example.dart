@@ -1,4 +1,4 @@
-import 'package:fancy_stream/fancy_streams.dart';
+import 'package:fancy_stream/fancy_stream.dart';
 
 class Example extends Disposable {
 
