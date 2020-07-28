@@ -49,8 +49,14 @@ extension FancyStreamsPower on Disposable {
   BehaviorSubject<T> _behaviorSubjectOf<T>({String key}) {
     try {
       final subject = _injector.get<BehaviorSubject<T>>(key: key);
-      //adding on subjects, to clean on future.
-      _loadedBehaviors.add(subject);
+      
+      assert(
+          _loadedSubjects[key ?? getDefaultKeyName(subject)] == null ||
+              _loadedSubjects[key ?? getDefaultKeyName(subject)] == subject,
+          "Must be the first or the same subject already loaded for type+key");
+
+      //adding on subjects, to clean on future.    
+      _loadedSubjects[key ?? getDefaultKeyName(subject)] = subject;
       return subject;
     } on InjectorException {
       _injector.map<BehaviorSubject<T>>((i) => BehaviorSubject<T>(),
@@ -60,18 +66,26 @@ extension FancyStreamsPower on Disposable {
     }
   }
 
+  String getDefaultKeyName<T>(T instance) {
+    final cleanName = instance
+        .toString()
+        .replaceFirst('Instance of ', '')
+        .replaceAll('\'', '');
+    return '$cleanName::${identityHashCode(instance)}';
+  }
+
   ///List with all Subject already loaded
-  Set<Subject> get _loadedBehaviors {
+  Map<String, BehaviorSubject> get _loadedSubjects {
     try {
-      return _injector.get<Set<Subject>>();
+      return _injector.get<Map<String, BehaviorSubject>>();
     } on InjectorException {
       //It`s not mapped yet.
 
       //mapping
-      _injector.map<Set<Subject>>((i) => {}, isSingleton: true);
+      _injector.map<Map<String, BehaviorSubject>>((i) => {}, isSingleton: true);
 
       //now it`s all ready, try again.
-      return _loadedBehaviors;
+      return _loadedSubjects;
     }
   }
 
@@ -89,6 +103,12 @@ extension FancyStreamsPower on Disposable {
     }
   }
 
+  Map<String, dynamic> streamValues() {
+    return _loadedSubjects.map<String, dynamic>(
+        (String key, BehaviorSubject s) =>
+            MapEntry<String, dynamic>(key, s.value));
+  }
+
   ///Get instance of injector based on instance (hashcode) of the class called.
   Injector get _injector =>
       Injector.getInjector(identityHashCode(this).toString());
@@ -100,10 +120,10 @@ extension FancyStreamsPower on Disposable {
       f.cancel();
     });
 
-    print("Closing Subjects: ${_loadedBehaviors.length}");
-    _loadedBehaviors.forEach((f) {
-      if (!f.isClosed) {
-        f.close();
+    print("Closing Subjects: ${_loadedSubjects.length}");
+    _loadedSubjects.forEach((k, v) {
+      if (!v.isClosed) {
+        v.close();
       }
     });
 
