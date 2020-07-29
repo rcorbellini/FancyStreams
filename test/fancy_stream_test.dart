@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:test/test.dart';
 
 import 'package:fancy_stream/fancy_stream.dart';
@@ -25,15 +23,16 @@ void main() {
     dummyClass.dispatchOn<String>("ok");
   });
 
-  test('Check value of Streams', () async {
+  test('streamValues return right values', () async {
     dummyClass.dispatchOn<String>('Rafael', key: 'name');
+    dummyClass.dispatchOn<String>('Rafael2', key: 'name');
     dummyClass.dispatchOn<String>('JinglleBell', key: 'nickname');
     //never emit just for test
     dummyClass.streamOf<String>(key: 'dummy');
 
-    final map = dummyClass.streamValues();
+    final map = dummyClass.valuesToMap();
     print(map);
-    expect(map['name'], 'Rafael');
+    expect(map['name'], 'Rafael2');
     expect(map['nickname'], 'JinglleBell');
     expect(map['dummy'], null);
   });

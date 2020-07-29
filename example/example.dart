@@ -11,6 +11,9 @@ class Example extends Disposable {
     listenOn<String>(printWhenDispatchedValue);
     dispatchOn<String>("Print that without key!");
 
+    final values = valuesToMap();
+    printWhenDispatchedValue(values.toString());
+
     ///Clean all Subjects, Subscrtiption and instances generated
     dispose();
   } 

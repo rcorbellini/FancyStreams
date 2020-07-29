@@ -49,13 +49,13 @@ extension FancyStreamsPower on Disposable {
   BehaviorSubject<T> _behaviorSubjectOf<T>({String key}) {
     try {
       final subject = _injector.get<BehaviorSubject<T>>(key: key);
-      
+
       assert(
           _loadedSubjects[key ?? getDefaultKeyName(subject)] == null ||
               _loadedSubjects[key ?? getDefaultKeyName(subject)] == subject,
-          "Must be the first or the same subject already loaded for type+key");
+          'Must be the first or the same subject already loaded for type+key');
 
-      //adding on subjects, to clean on future.    
+      //adding on subjects, to clean on future.
       _loadedSubjects[key ?? getDefaultKeyName(subject)] = subject;
       return subject;
     } on InjectorException {
@@ -85,6 +85,7 @@ extension FancyStreamsPower on Disposable {
       _injector.map<Map<String, BehaviorSubject>>((i) => {}, isSingleton: true);
 
       //now it`s all ready, try again.
+      // ignore: recursive_getters
       return _loadedSubjects;
     }
   }
@@ -99,11 +100,12 @@ extension FancyStreamsPower on Disposable {
       _injector.map<Set<StreamSubscription>>((i) => {}, isSingleton: true);
 
       //now it`s all ready, try again.
+      // ignore: recursive_getters
       return _loadedSubscription;
     }
   }
 
-  Map<String, dynamic> streamValues() {
+  Map<String, dynamic> valuesToMap() {
     return _loadedSubjects.map<String, dynamic>(
         (String key, BehaviorSubject s) =>
             MapEntry<String, dynamic>(key, s.value));
