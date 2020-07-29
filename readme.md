@@ -39,13 +39,13 @@ _yourWidget_
                     builder:...);                 
 ```
 
-When you are working on a form with 10 fields and every field need a stream, will be more than 30 lines of boilerplate, and everyone HATES boilerplate.
+When you are working on a compelx widget with then or more streams, will be more than 30 lines of boilerplate, and everyone HATES boilerplate.
 
 
 Fancy Way - Working on events/State
 ---
 
-Now i will show you a power of fancy streams:
+Now i will show you a power of fancy streams, with 0 lines of boilerPlate.
 
 _YourBloc_
 ``` dart
