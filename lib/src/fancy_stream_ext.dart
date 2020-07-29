@@ -117,12 +117,12 @@ extension FancyStreamsPower on Disposable {
 
   ///Clean/close all necessary (loaded) objects.
   void cleanAll() {
-    print("Closing subscription: ${_loadedSubscription.length}");
+    print('Closing subscription: ${_loadedSubscription.length}');
     _loadedSubscription.forEach((f) {
       f.cancel();
     });
 
-    print("Closing Subjects: ${_loadedSubjects.length}");
+    print('Closing Subjects: ${_loadedSubjects.length}');
     _loadedSubjects.forEach((k, v) {
       if (!v.isClosed) {
         v.close();

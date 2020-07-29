@@ -9,3 +9,8 @@
 ## 1.1.0+3
 
 * a New Power added, the power of json value of streams.
+
+
+## 1.1.1+4
+
+* Doc and a little refactory.
