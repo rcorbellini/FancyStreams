@@ -51,11 +51,9 @@ class HomeBloc extends Disposable {
     listenOn<HomeEvent>(_handleEvents);
     dispatchOn<HomeEvent>(LoadTalks());
   }
-
-  ///the [Disposable.dispose] function already call 
-  ///[cleanAll] of power streams.
 }
 ```
+_the [Disposable.dispose] function already call [cleanAll] of power streams._
 
 _yourWidget_
 ``` dart
