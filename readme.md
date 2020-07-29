@@ -7,8 +7,10 @@ Not recommend it for those who are learning to work with streams, because of the
 
 ## Let's hands on code:
 
-The boring and traditonal way to use streams is almost like that, you need a controller,sink and stream, for each stream that you will work on and you will need close/cancel every necessary object.
 
+Traditional Way - Working on events/State
+---
+The boring and traditonal way to use streams is almost like that, you need a controller,sink and stream, for each stream that you will work on and you will need close/cancel every necessary object.
 _YourBloc_
 ``` dart
 class HomeBloc  {
@@ -39,7 +41,9 @@ _yourWidget_
 
 When you are working on a form with 10 fields and every field need a stream, will be more than 30 lines of boilerplate, and everyone HATES boilerplate.
 
---- 
+
+Fancy Way - Working on events/State
+---
 
 Now i will show you a power of fancy streams:
 
@@ -62,4 +66,8 @@ _yourWidget_
                     builder:...);                 
 ```
 
+Traditional Way - Working on Forms
+---
+
+Fancy Way - Working on forms
 ---
