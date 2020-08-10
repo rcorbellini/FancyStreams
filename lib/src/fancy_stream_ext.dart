@@ -48,7 +48,7 @@ extension FancyStreamsPower on Disposable {
 
   void addTransformOn<T, S>(
       StreamTransformer<T, S> streamTransformer, String key) {
-    final stream = _injector.get<Stream<T>>(key: key);
+    final stream = streamOf<T>(key: key);
     final streamTransformed = stream.transform(streamTransformer);
     _injector.map<Stream<S>>((i) => streamTransformed,
         isSingleton: true, overriding: true, key: key);
