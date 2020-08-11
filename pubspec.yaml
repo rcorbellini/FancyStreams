@@ -10,10 +10,7 @@ environment:
 dependencies:
   meta: ^1.1.8
   rxdart: ^0.24.1
-  flutter_simple_dependency_injection:
-   git:
-     url: https://github.com/rcorbellini/flutter_simple_dependency_injection.git
-
+  flutter_simple_dependency_injection: ^1.0.3
 
 
 dev_dependencies:

@@ -49,9 +49,17 @@ extension FancyStreamsPower on Disposable {
   void addTransformOn<T, S>(
       StreamTransformer<T, S> streamTransformer, Object key) {
     final stream = streamOf<T>(key: key);
+    //removing the old one
+    _injector.removeMapping<Stream<T>>(key: _objetcToKey(key));
+
     final streamTransformed = stream.transform(streamTransformer);
+    try {
+      _injector.removeMapping<Stream<S>>(key: _objetcToKey(key));
+    } on InjectorException {
+      //"its all righ, the new one doesn't exist, or already removed";
+    }
     _injector.map<Stream<S>>((i) => streamTransformed,
-        isSingleton: true, overriding: true, key: _objetcToKey(key));
+        isSingleton: true, key: _objetcToKey(key));
   }
 
   BehaviorSubject<T> _behaviorSubjectOf<T>({Object key}) {

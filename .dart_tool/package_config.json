@@ -75,7 +75,7 @@
     },
     {
       "name": "flutter_simple_dependency_injection",
-      "rootUri": "file:///home/rafael/.pub-cache/git/flutter_simple_dependency_injection-79c8382e95d3a2d27c59259b3eadece81c57421d/",
+      "rootUri": "file:///home/rafael/.pub-cache/hosted/pub.dartlang.org/flutter_simple_dependency_injection-1.0.3",
       "packageUri": "lib/",
       "languageVersion": "2.0"
     },
@@ -326,7 +326,7 @@
       "languageVersion": "2.6"
     }
   ],
-  "generated": "2020-08-11T14:26:13.061524Z",
+  "generated": "2020-08-11T18:24:51.478339Z",
   "generator": "pub",
   "generatorVersion": "2.8.0-dev.0.0"
 }

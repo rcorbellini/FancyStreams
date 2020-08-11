@@ -88,12 +88,10 @@ packages:
   flutter_simple_dependency_injection:
     dependency: "direct main"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "79c8382e95d3a2d27c59259b3eadece81c57421d"
-      url: "https://github.com/rcorbellini/flutter_simple_dependency_injection.git"
-    source: git
-    version: "1.0.2+1"
+      name: flutter_simple_dependency_injection
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.3"
   glob:
     dependency: transitive
     description:
