@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:test/test.dart';
 
 import 'package:fancy_stream/fancy_stream.dart';
@@ -23,6 +25,22 @@ void main() {
     dummyClass.dispatchOn<String>("ok");
   });
 
+  test('addTransformOn with/without key', () async {
+    final transformer =
+        StreamTransformer<int, String>.fromHandlers(handleData: (campo, sink) {
+      sink.add(campo.toString());
+    });
+
+    dummyClass.addTransformOn(transformer);
+    dummyClass.addTransformOn(transformer, key: "test");
+
+    expect(dummyClass.streamOf<String>(), emits("1"));
+    expect(dummyClass.streamOf<String>(key: "test"), emits("2"));
+
+    dummyClass.dispatchOn<int>(1);
+    dummyClass.dispatchOn<int>(2, key: "test");
+  });
+
   test('streamValues return right values, with object key', () async {
     dummyClass.dispatchOn<String>('Rafael', key: keyTest.name);
     dummyClass.dispatchOn<String>('Rafael2', key: keyTest.name);
@@ -40,8 +58,4 @@ void main() {
 
 class DummyClass extends Disposable {}
 
-
-enum keyTest{
-   name, nickname , dummy
-
-}
+enum keyTest { name, nickname, dummy }

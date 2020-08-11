@@ -47,7 +47,7 @@ extension FancyStreamsPower on Disposable {
   }
 
   void addTransformOn<T, S>(
-      StreamTransformer<T, S> streamTransformer, Object key) {
+      StreamTransformer<T, S> streamTransformer, {Object key}) {
     final stream = streamOf<T>(key: key);
     //removing the old one
     _injector.removeMapping<Stream<T>>(key: _objetcToKey(key));
