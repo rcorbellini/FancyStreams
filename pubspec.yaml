@@ -2,7 +2,7 @@ name: fancy_stream
 description: A sophisticated way to use streams, make it even easier to use.
 homepage: https://github.com/rcorbellini/FancyStreams
 
-version: 1.3.1+6
+version: 1.3.2+7
 
 environment:
   sdk: ">=2.6.0 <3.0.0"
