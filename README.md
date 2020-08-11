@@ -5,6 +5,8 @@
 
 Not recommend it for those who are learning to work with streams, because of the ease that this lib provides if you are starting you will not learn the basics of using streams.
 
+**Published on**: https://pub.dev/packages/fancy_stream
+
 ## Let's hands on code:
 
 
