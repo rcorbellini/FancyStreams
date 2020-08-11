@@ -19,7 +19,7 @@ extension FancyStreamsPower on Disposable {
       {Function onError,
       void Function() onDone,
       bool cancelOnError,
-      String key}) {
+      Object key}) {
     final subscription =
         streamOf<T>(key: key).listen(onData, onError: onError, onDone: onDone);
     //adding on subcription, to clean on future.
@@ -28,35 +28,35 @@ extension FancyStreamsPower on Disposable {
     return subscription;
   }
 
-  void dispatchOn<T>(T value, {String key}) {
+  void dispatchOn<T>(T value, {Object key}) {
     _behaviorSubjectOf<T>(key: key).sink.add(value);
   }
 
-  void dispatchAllOn<T>(Stream<T> values, {String key}) {
+  void dispatchAllOn<T>(Stream<T> values, {Object key}) {
     _behaviorSubjectOf<T>(key: key).sink.addStream(values);
   }
 
-  Stream<T> streamOf<T>({String key}) {
+  Stream<T> streamOf<T>({Object key}) {
     try {
-      return _injector.get<Stream<T>>(key: key);
+      return _injector.get<Stream<T>>(key: _objetcToKey(key));
     } on InjectorException {
       _injector.map<Stream<T>>((i) => _behaviorSubjectOf<T>(key: key).stream,
-          isSingleton: true, key: key);
+          isSingleton: true, key: _objetcToKey(key));
       return streamOf<T>(key: key);
     }
   }
 
   void addTransformOn<T, S>(
-      StreamTransformer<T, S> streamTransformer, String key) {
-    final stream = _injector.get<Stream<T>>(key: key);
+      StreamTransformer<T, S> streamTransformer, Object key) {
+    final stream = _injector.get<Stream<T>>(key: _objetcToKey(key));
     final streamTransformed = stream.transform(streamTransformer);
     _injector.map<Stream<S>>((i) => streamTransformed,
-        isSingleton: true, overriding: true, key: key);
+        isSingleton: true, overriding: true, key: _objetcToKey(key));
   }
 
-  BehaviorSubject<T> _behaviorSubjectOf<T>({String key}) {
+  BehaviorSubject<T> _behaviorSubjectOf<T>({Object key}) {
     try {
-      final subject = _injector.get<BehaviorSubject<T>>(key: key);
+      final subject = _injector.get<BehaviorSubject<T>>(key: _objetcToKey(key));
 
       assert(
           _loadedSubjects[key ?? getDefaultKeyName(subject)] == null ||
@@ -64,14 +64,24 @@ extension FancyStreamsPower on Disposable {
           'Must be the first or the same subject already loaded for type+key');
 
       //adding on subjects, to clean on future.
-      _loadedSubjects[key ?? getDefaultKeyName(subject)] = subject;
+      _loadedSubjects[_objetcToKey(key) ?? getDefaultKeyName(subject)] =
+          subject;
       return subject;
     } on InjectorException {
       _injector.map<BehaviorSubject<T>>((i) => BehaviorSubject<T>(),
-          isSingleton: true, key: key);
+          isSingleton: true, key: _objetcToKey(key));
 
       return _behaviorSubjectOf<T>(key: key);
     }
+  }
+
+  String _objetcToKey(Object key) {
+    if (key == null) {
+      return null;
+    }
+    final stringKey = key?.toString();
+    _keys[stringKey] = key;
+    return stringKey;
   }
 
   String getDefaultKeyName<T>(T instance) {
@@ -113,10 +123,24 @@ extension FancyStreamsPower on Disposable {
     }
   }
 
-  Map<String, dynamic> valuesToMap() {
-    return _loadedSubjects.map<String, dynamic>(
-        (String key, BehaviorSubject s) =>
-            MapEntry<String, dynamic>(key, s.value));
+  Map<String, Object> get _keys {
+    try {
+      return _injector.get<Map<String, Object>>();
+    } on InjectorException {
+      //It`s not mapped yet.
+
+      //mapping
+      _injector.map<Map<String, Object>>((i) => {}, isSingleton: true);
+
+      //now it`s all ready, try again.
+      // ignore: recursive_getters
+      return _keys;
+    }
+  }
+
+  Map<K, dynamic> valuesToMap<K>() {
+    return _loadedSubjects.map<K, dynamic>((String key, BehaviorSubject s) =>
+        MapEntry<K, dynamic>(_keys[key] as K, s.value));
   }
 
   ///Get instance of injector based on instance (hashcode) of the class called.

@@ -23,19 +23,25 @@ void main() {
     dummyClass.dispatchOn<String>("ok");
   });
 
-  test('streamValues return right values', () async {
-    dummyClass.dispatchOn<String>('Rafael', key: 'name');
-    dummyClass.dispatchOn<String>('Rafael2', key: 'name');
-    dummyClass.dispatchOn<String>('JinglleBell', key: 'nickname');
+  test('streamValues return right values, with object key', () async {
+    dummyClass.dispatchOn<String>('Rafael', key: keyTest.name);
+    dummyClass.dispatchOn<String>('Rafael2', key: keyTest.name);
+    dummyClass.dispatchOn<String>('JinglleBell', key: keyTest.nickname);
     //never emit just for test
-    dummyClass.streamOf<String>(key: 'dummy');
+    dummyClass.streamOf<String>(key: keyTest.dummy);
 
-    final map = dummyClass.valuesToMap();
+    final map = dummyClass.valuesToMap<keyTest>();
     print(map);
-    expect(map['name'], 'Rafael2');
-    expect(map['nickname'], 'JinglleBell');
-    expect(map['dummy'], null);
+    expect(map[keyTest.name], 'Rafael2');
+    expect(map[keyTest.nickname], 'JinglleBell');
+    expect(map[keyTest.dummy], null);
   });
 }
 
 class DummyClass extends Disposable {}
+
+
+enum keyTest{
+   name, nickname , dummy
+
+}

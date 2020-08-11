@@ -18,3 +18,7 @@
 ## 1.2.1+5
 
 * The power of Transform On.
+
+## 1.3.1+6
+
+* Now key, can be objects (to be able to use Enums).
