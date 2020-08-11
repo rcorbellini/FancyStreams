@@ -32,13 +32,13 @@ void main() {
     });
 
     dummyClass.addTransformOn(transformer);
-    dummyClass.addTransformOn(transformer, key: "test");
+    dummyClass.addTransformOn(transformer, key: 'test');
 
-    expect(dummyClass.streamOf<String>(), emits("1"));
-    expect(dummyClass.streamOf<String>(key: "test"), emits("2"));
+    expect(dummyClass.streamOf<String>(), emits('1'));
+    expect(dummyClass.streamOf<String>(key: 'test'), emits('2'));
 
     dummyClass.dispatchOn<int>(1);
-    dummyClass.dispatchOn<int>(2, key: "test");
+    dummyClass.dispatchOn<int>(2, key: 'test');
   });
 
   test('streamValues return right values, with object key', () async {
