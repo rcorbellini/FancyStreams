@@ -5,7 +5,7 @@
 
 Not recommend it for those who are learning to work with streams, because of the ease that this lib provides if you are starting you will not learn the basics of using streams.
 
-**Published on**: 
+**Published at**: 
 
 [![pub_package](https://img.shields.io/pub/v/fancy_stream?color=%23ff)](https://pub.dev/packages/fancy_stream)
 
