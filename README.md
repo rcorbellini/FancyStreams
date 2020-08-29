@@ -8,9 +8,7 @@ Not recommend it for those who are learning to work with streams, because of the
 **Published at**: 
 
 [![codecov](https://codecov.io/gh/rcorbellini/InABottle/branch/master/graph/badge.svg)](https://codecov.io/gh/rcorbellini/InABottle)
-
 [![pub_package](https://img.shields.io/pub/v/fancy_stream?color=%23ff)](https://pub.dev/packages/fancy_stream)
-
 [![pub_package](https://img.shields.io/github/license/rcorbellini/FancyStreams)](https://github.com/rcorbellini/FancyStreams/blob/master/LICENSE)
 
 
