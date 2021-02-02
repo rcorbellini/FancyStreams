@@ -13,14 +13,14 @@ import 'package:rxdart/rxdart.dart';
 /// - [streamOf]  get directly instance of stream, without  any boiler
 /// plate of subjec.
 /// - [dispose] will close/cancel everything created.
-class Fancy{
+class Fancy {
   StreamSubscription<T> listenOn<T>(void Function(T) onData,
       {Function onError,
-        void Function() onDone,
-        bool cancelOnError,
-        Object key}) {
+      void Function() onDone,
+      bool cancelOnError,
+      Object key}) {
     final subscription =
-    streamOf<T>(key: key).listen(onData, onError: onError, onDone: onDone);
+        streamOf<T>(key: key).listen(onData, onError: onError, onDone: onDone);
     //adding on subcription, to clean on future.
     _loadedSubscription.add(subscription);
 
@@ -66,9 +66,9 @@ class Fancy{
       final subject = _injector.get<BehaviorSubject<T>>(key: _objetcToKey(key));
 
       assert(
-      _loadedSubjects[key ?? getDefaultKeyName(subject)] == null ||
-          _loadedSubjects[key ?? getDefaultKeyName(subject)] == subject,
-      'Must be the first or the same subject already loaded for type+key');
+          _loadedSubjects[key ?? getDefaultKeyName(subject)] == null ||
+              _loadedSubjects[key ?? getDefaultKeyName(subject)] == subject,
+          'Must be the first or the same subject already loaded for type+key');
 
       //adding on subjects, to clean on future.
       _loadedSubjects[_objetcToKey(key) ?? getDefaultKeyName(subject)] =
@@ -146,8 +146,9 @@ class Fancy{
   }
 
   Map<dynamic, dynamic> get map {
-    return _loadedSubjects.map<dynamic, dynamic>((String key, BehaviorSubject s) =>
-        MapEntry<dynamic, dynamic>(_keys[key], s.value));
+    return _loadedSubjects.map<dynamic, dynamic>(
+        (String key, BehaviorSubject s) =>
+            MapEntry<dynamic, dynamic>(_keys[key], s.value));
   }
 
   operator [](Object key) => map[key];

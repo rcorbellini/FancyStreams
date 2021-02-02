@@ -57,5 +57,4 @@ void main() {
   });
 }
 
-
 enum keyTest { name, nickname, dummy }

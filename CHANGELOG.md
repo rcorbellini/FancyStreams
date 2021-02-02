@@ -1,4 +1,8 @@
 
+## 2.0.0+8
+
+* Change to delegate Fancy, valuesToMap now are just map and can use direct operator [] on facy.
+
 ## 1.3.2+7
 
 * Fix Format with dartfmt -w .
