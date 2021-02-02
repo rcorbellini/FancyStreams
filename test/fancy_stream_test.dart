@@ -1,14 +1,15 @@
 import 'dart:async';
 
+import 'package:fancy_stream/src/fancy.dart';
 import 'package:test/test.dart';
 
 import 'package:fancy_stream/fancy_stream.dart';
 
 void main() {
-  DummyClass dummyClass;
+  Fancy dummyClass;
 
   setUp(() {
-    dummyClass = DummyClass();
+    dummyClass = Fancy();
   });
 
   tearDown(() => dummyClass.dispose());
@@ -48,7 +49,7 @@ void main() {
     //never emit just for test
     dummyClass.streamOf<String>(key: keyTest.dummy);
 
-    final map = dummyClass.valuesToMap<keyTest>();
+    final map = dummyClass.map;
     print(map);
     expect(map[keyTest.name], 'Rafael2');
     expect(map[keyTest.nickname], 'JinglleBell');
@@ -56,6 +57,5 @@ void main() {
   });
 }
 
-class DummyClass extends Disposable {}
 
 enum keyTest { name, nickname, dummy }

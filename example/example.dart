@@ -1,19 +1,21 @@
 import 'package:fancy_stream/fancy_stream.dart';
+import 'package:fancy_stream/src/fancy.dart';
 
-class Example extends Disposable {
+class Example {
   void main(List<String> args) {
+    Fancy fancy = Fancy();
     //listen something on String, with key = "print"
-    listenOn<String>(printWhenDispatchedValue, key: "print");
-    dispatchOn<String>("Print that!", key: "print");
+    fancy.listenOn<String>(printWhenDispatchedValue, key: "print");
+    fancy.dispatchOn<String>("Print that!", key: "print");
 
-    listenOn<String>(printWhenDispatchedValue);
-    dispatchOn<String>("Print that without key!");
+    fancy.listenOn<String>(printWhenDispatchedValue);
+    fancy.dispatchOn<String>("Print that without key!");
 
-    final values = valuesToMap<String>();
+    final values = fancy.map;
     printWhenDispatchedValue(values.toString());
 
     ///Clean all Subjects, Subscrtiption and instances generated
-    dispose();
+    fancy.dispose();
   }
 
   void printWhenDispatchedValue(String value) {
