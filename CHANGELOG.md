@@ -1,4 +1,8 @@
 
+## 2.0.1+9
+
+* adding fancy on export.
+
 ## 2.0.0+8
 
 * Change to delegate Fancy, valuesToMap now are just map and can use direct operator [] on facy.
