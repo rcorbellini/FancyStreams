@@ -1,4 +1,8 @@
 
+## 2.0.2+10
+
+* Deprecate 'disposable' add fancy_delegate.
+
 ## 2.0.1+9
 
 * adding fancy on export.

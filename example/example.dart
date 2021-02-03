@@ -1,9 +1,9 @@
 import 'package:fancy_stream/fancy_stream.dart';
-import 'package:fancy_stream/src/fancy.dart';
+import 'package:fancy_stream/src/fancy_imp.dart';
 
 class Example {
   void main(List<String> args) {
-    Fancy fancy = Fancy();
+    Fancy fancy = FancyImp();
     //listen something on String, with key = "print"
     fancy.listenOn<String>(printWhenDispatchedValue, key: "print");
     fancy.dispatchOn<String>("Print that!", key: "print");

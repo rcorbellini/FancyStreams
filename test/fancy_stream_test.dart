@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:fancy_stream/src/fancy.dart';
+import 'package:fancy_stream/src/fancy_imp.dart';
 import 'package:test/test.dart';
 
 import 'package:fancy_stream/fancy_stream.dart';
@@ -9,7 +9,7 @@ void main() {
   Fancy dummyClass;
 
   setUp(() {
-    dummyClass = Fancy();
+    dummyClass = FancyImp();
   });
 
   tearDown(() => dummyClass.dispose());
