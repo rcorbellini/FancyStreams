@@ -56,7 +56,7 @@ Now i will show you a power of fancy streams, with 0 lines of boilerPlate.
 
 _YourBloc_
 ``` dart
-class HomeBloc extends Disposable {
+class HomeBloc extends FancyDelegate {
 
   HomeBloc() {    
     listenOn<HomeEvent>(_handleEvents);
