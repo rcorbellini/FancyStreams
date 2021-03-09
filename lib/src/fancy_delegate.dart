@@ -1,8 +1,7 @@
 import 'dart:async';
 
 import 'package:fancy_stream/src/fancy.dart';
-import 'package:fancy_stream/src/fancy_imp.dart';
-import 'package:meta/meta.dart';
+import 'package:fancy_stream/src/fancy_imp.dart'; 
 
 
 ///A abstraction of  something can be disposable, everything can be disosable
@@ -12,20 +11,19 @@ import 'package:meta/meta.dart';
 class FancyDelegate implements Fancy {
   final Fancy fancy;
 
-  FancyDelegate({Fancy fancy}) : fancy = fancy ?? FancyImp();
+  FancyDelegate({Fancy? fancy}) : fancy = fancy ?? FancyImp();
 
-  ///Must call when your imlpementation of this class are being disposed.
-  @mustCallSuper
+  ///Must call when your imlpementation of this class are being disposed. 
   void dispose() {
     fancy.dispose();
   }
 
   @override
   StreamSubscription<T> listenOn<T>(void Function(T) onData,
-      {Function onError,
-        void Function() onDone,
-        bool cancelOnError,
-        Object key}) =>
+      {Function? onError,
+        void Function()? onDone,
+        bool? cancelOnError,
+        Object? key}) =>
       fancy.listenOn(onData,
           onDone: onDone,
           onError: onError,
@@ -33,22 +31,22 @@ class FancyDelegate implements Fancy {
           key: key);
 
   @override
-  void dispatchOn<T>(T value, {Object key}) =>
+  void dispatchOn<T>(T value, {Object? key}) =>
       fancy.dispatchOn(value, key: key);
 
   @override
-  void dispatchAllOn<T>(Stream<T> values, {Object key}) =>
+  void dispatchAllOn<T>(Stream<T> values, {Object? key}) =>
       fancy.dispatchOn(values, key: key);
 
   @override
-  Stream<T> streamOf<T>({Object key}) => fancy.streamOf(key: key);
+  Stream<T> streamOf<T>({Object? key}) => fancy.streamOf(key: key);
 
   @override
   void addTransformOn<T, S>(StreamTransformer<T, S> streamTransformer,
-      {Object key}) =>
+      {Object? key}) =>
       fancy.addTransformOn(streamTransformer, key: key);
 
-  Map<K, dynamic> valuesToMap<K>() => fancy.map;
+  Map<K, dynamic> valuesToMap<K>() => fancy.map as Map<K, dynamic>;
 
   @override
   Map get map => fancy.map;

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:fancy_stream/fancy_stream.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_simple_dependency_injection/injector.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -16,10 +17,10 @@ import 'package:rxdart/rxdart.dart';
 /// - [dispose] will close/cancel everything created.
 class FancyImp implements Fancy{
   StreamSubscription<T> listenOn<T>(void Function(T) onData,
-      {Function onError,
-      void Function() onDone,
-      bool cancelOnError,
-      Object key}) {
+      {Function? onError,
+      void Function()? onDone,
+      bool? cancelOnError,
+      Object? key}) {
     final subscription =
         streamOf<T>(key: key).listen(onData, onError: onError, onDone: onDone);
     //adding on subcription, to clean on future.
@@ -28,15 +29,15 @@ class FancyImp implements Fancy{
     return subscription;
   }
 
-  void dispatchOn<T>(T value, {Object key}) {
+  void dispatchOn<T>(T value, {Object? key}) {
     _behaviorSubjectOf<T>(key: key).sink.add(value);
   }
 
-  void dispatchAllOn<T>(Stream<T> values, {Object key}) {
+  void dispatchAllOn<T>(Stream<T> values, {Object? key}) {
     _behaviorSubjectOf<T>(key: key).sink.addStream(values);
   }
 
-  Stream<T> streamOf<T>({Object key}) {
+  Stream<T> streamOf<T>({Object? key}) {
     try {
       return _injector.get<Stream<T>>(key: _objetcToKey(key));
     } on InjectorException {
@@ -47,7 +48,7 @@ class FancyImp implements Fancy{
   }
 
   void addTransformOn<T, S>(StreamTransformer<T, S> streamTransformer,
-      {Object key}) {
+      {Object? key}) {
     final stream = streamOf<T>(key: key);
     //removing the old one
     _injector.removeMapping<Stream<T>>(key: _objetcToKey(key));
@@ -62,7 +63,7 @@ class FancyImp implements Fancy{
         isSingleton: true, key: _objetcToKey(key));
   }
 
-  BehaviorSubject<T> _behaviorSubjectOf<T>({Object key}) {
+  BehaviorSubject<T> _behaviorSubjectOf<T>({Object? key}) {
     try {
       final subject = _injector.get<BehaviorSubject<T>>(key: _objetcToKey(key));
 
@@ -83,11 +84,11 @@ class FancyImp implements Fancy{
     }
   }
 
-  String _objetcToKey(Object key) {
+  String? _objetcToKey(Object? key) {
     if (key == null) {
       return null;
     }
-    final stringKey = key?.toString();
+    final stringKey = key.toString();
     _keys[stringKey] = key;
     return stringKey;
   }

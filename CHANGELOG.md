@@ -1,4 +1,8 @@
 
+## 3.0.0+11
+
+* Null-Safety
+
 ## 2.0.2+10
 
 * Deprecate 'disposable' add fancy_delegate.
