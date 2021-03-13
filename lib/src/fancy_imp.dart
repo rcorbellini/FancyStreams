@@ -15,7 +15,7 @@ import 'package:rxdart/rxdart.dart';
 /// - [streamOf]  get directly instance of stream, without  any boiler
 /// plate of subjec.
 /// - [dispose] will close/cancel everything created.
-class FancyImp implements Fancy{
+class FancyImp implements Fancy {
   StreamSubscription<T> listenOn<T>(void Function(T) onData,
       {Function? onError,
       void Function()? onDone,
@@ -31,6 +31,10 @@ class FancyImp implements Fancy{
 
   void dispatchOn<T>(T value, {Object? key}) {
     _behaviorSubjectOf<T>(key: key).sink.add(value);
+  }
+
+  void dispatchErrorOn<T>(Object value, {Object? key}) {
+    _behaviorSubjectOf<T>(key: key).sink.addError(value);
   }
 
   void dispatchAllOn<T>(Stream<T> values, {Object? key}) {
@@ -156,8 +160,7 @@ class FancyImp implements Fancy{
   operator [](Object key) => map[key];
 
   ///Get instance of injector based on instance (hashcode) of the class called.
-  Injector get _injector =>
-      Injector(identityHashCode(this).toString());
+  Injector get _injector => Injector(identityHashCode(this).toString());
 
   ///Clean/close all necessary (loaded) objects.
   void dispose() {

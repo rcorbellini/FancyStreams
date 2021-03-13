@@ -1,8 +1,7 @@
 import 'dart:async';
 
 import 'package:fancy_stream/src/fancy.dart';
-import 'package:fancy_stream/src/fancy_imp.dart'; 
-
+import 'package:fancy_stream/src/fancy_imp.dart';
 
 ///A abstraction of  something can be disposable, everything can be disosable
 /// has all of power of fancy stream (extesion functions over Disposable).
@@ -13,17 +12,17 @@ class FancyDelegate implements Fancy {
 
   FancyDelegate({Fancy? fancy}) : fancy = fancy ?? FancyImp();
 
-  ///Must call when your imlpementation of this class are being disposed. 
+  ///Must call when your imlpementation of this class are being disposed.
   void dispose() {
     fancy.dispose();
   }
 
   @override
   StreamSubscription<T> listenOn<T>(void Function(T) onData,
-      {Function? onError,
-        void Function()? onDone,
-        bool? cancelOnError,
-        Object? key}) =>
+          {Function? onError,
+          void Function()? onDone,
+          bool? cancelOnError,
+          Object? key}) =>
       fancy.listenOn(onData,
           onDone: onDone,
           onError: onError,
@@ -33,7 +32,6 @@ class FancyDelegate implements Fancy {
   @override
   void dispatchOn<T>(T value, {Object? key}) =>
       fancy.dispatchOn(value, key: key);
-
 
   @override
   void dispatchErrorOn<T>(Object value, {Object? key}) =>
@@ -48,7 +46,7 @@ class FancyDelegate implements Fancy {
 
   @override
   void addTransformOn<T, S>(StreamTransformer<T, S> streamTransformer,
-      {Object? key}) =>
+          {Object? key}) =>
       fancy.addTransformOn(streamTransformer, key: key);
 
   Map<K, dynamic> valuesToMap<K>() => fancy.map as Map<K, dynamic>;
