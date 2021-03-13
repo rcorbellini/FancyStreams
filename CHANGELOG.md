@@ -1,4 +1,9 @@
 
+## 3.1.1+13
+
+* BugFix
+
+
 ## 3.1.0+12
 
 * Now you can dispatch error on stream.
