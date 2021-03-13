@@ -1,4 +1,9 @@
 
+## 3.1.0+12
+
+* Now you can dispatch error on stream.
+
+
 ## 3.0.0+11
 
 * Null-Safety

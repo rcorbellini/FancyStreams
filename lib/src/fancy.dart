@@ -9,6 +9,8 @@ abstract class Fancy {
 
   void dispatchOn<T>(T value, {Object? key});
 
+  void dispatchErrorOn<T>(Object value, {Object? key});
+
   void dispatchAllOn<T>(Stream<T> values, {Object? key});
 
   Stream<T> streamOf<T>({Object? key});

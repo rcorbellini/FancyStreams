@@ -34,6 +34,11 @@ class FancyDelegate implements Fancy {
   void dispatchOn<T>(T value, {Object? key}) =>
       fancy.dispatchOn(value, key: key);
 
+
+  @override
+  void dispatchErrorOn<T>(Object value, {Object? key}) =>
+      fancy.dispatchErrorOn(value, key: key);
+
   @override
   void dispatchAllOn<T>(Stream<T> values, {Object? key}) =>
       fancy.dispatchOn(values, key: key);
