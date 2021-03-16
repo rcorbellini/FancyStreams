@@ -1,8 +1,9 @@
 import 'dart:async';
 
 import 'package:fancy_stream/fancy_stream.dart';
+import 'package:fancy_stream/src/injector.dart';
+import 'package:get_it/get_it.dart';
 // ignore: import_of_legacy_library_into_null_safe
-import 'package:flutter_simple_dependency_injection/injector.dart';
 import 'package:rxdart/rxdart.dart';
 
 ///Give all power of Fancy Streans to Disposable class.
@@ -160,7 +161,8 @@ class FancyImp implements Fancy {
   operator [](Object key) => map[key];
 
   ///Get instance of injector based on instance (hashcode) of the class called.
-  Injector get _injector => Injector(identityHashCode(this).toString());
+  Injector _injector =
+      GetItInjector(); //Injector(identityHashCode(this).toString());
 
   ///Clean/close all necessary (loaded) objects.
   void dispose() {
@@ -176,6 +178,6 @@ class FancyImp implements Fancy {
       }
     });
 
-    _injector.dispose();
+    //_injector.dispose();
   }
 }

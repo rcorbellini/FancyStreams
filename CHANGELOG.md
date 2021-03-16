@@ -1,4 +1,8 @@
 
+## 4.0.0+14
+
+* Change the injector to GetIt
+
 ## 3.1.1+13
 
 * BugFix

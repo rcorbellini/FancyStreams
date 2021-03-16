@@ -2,14 +2,14 @@ name: fancy_stream
 description: A sophisticated way to use streams, make it even easier to use.
 homepage: https://github.com/rcorbellini/FancyStreams
 
-version: 3.1.1+13
+version: 4.0.0+14
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
   rxdart: ^0.26.0
-  flutter_simple_dependency_injection: ^1.0.4
+  get_it: ^6.0.0
 
 
 dev_dependencies:
